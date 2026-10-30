@@ -1,0 +1,12 @@
+// Static-assets-only Worker: no script, Cloudflare serves ./public directly.
+// Use `uv run deploy.py [--local | --live | --build-only]` from the repo root.
+{
+  "name": "personal-page",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+  // To serve on a custom domain, add e.g.:
+  // "routes": [{ "pattern": "kitchow.dev", "custom_domain": true }]
+}

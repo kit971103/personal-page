@@ -1,35 +1,38 @@
-# python-template-uv
+# personal-page
 
-Python project template managed by [uv](https://docs.astral.sh/uv/).
+Static personal page: intro, GitHub/LinkedIn links and a portfolio section.
+Rendered with Jinja2 and served as a static-assets-only Cloudflare Worker.
 
-## Using this template
+## Edit content
 
-1. Rename the package directory `src/project_name/` to your package name.
-2. Update `name` and `description` in `pyproject.toml`; `name` must match
-   the package directory (hyphens become underscores).
+All text, links and projects live in `content/site.toml`. Add a portfolio
+entry by appending another `[[projects]]` table (`demo`, `source` and `tags`
+are optional).
 
-## Setup
+## Commands
 
-```sh
-uv sync                    # create .venv and install the project + dev dependencies
-uv sync --group notebook   # also install JupyterLab (optional)
-uv run jupyter lab         # start JupyterLab (after the line above)
-```
-
-## Common commands
+Requires [uv](https://docs.astral.sh/uv/) and Node.js (for `npx wrangler`).
 
 ```sh
-uvx ruff check .           # lint
-uvx ruff format .          # format
-uv run mypy src            # type check (mypy)
-uv run ty check            # type check (ty, preview)
-uv add <package>           # add a runtime dependency
-uv add --dev <package>     # add a dev dependency
+uv sync                              # install dependencies (first time)
+uv run deploy.py                     # build, then preview at http://localhost:8787 (same as --local)
+uv run deploy.py --build-only        # build into deploy/public/ only
+uv run deploy.py --live              # build, then deploy to Cloudflare
 ```
+
+Every mode rebuilds `deploy/public/` first. Unrecognised arguments are passed
+through to Wrangler, e.g. `uv run deploy.py --live --dry-run` or
+`uv run deploy.py --port 8000`.
+
+Before the first `--live` deploy, log in once: `cd deploy && npx wrangler login`.
 
 ## Layout
 
 ```text
-src/project_name/   package source (installed in editable mode by uv sync)
-docs/decisions/     architecture decision records (ADRs), NNNN-title.md
+content/site.toml       page content (edit this)
+templates/              Jinja2 templates; files starting with "_" are layouts, not pages
+static/                 copied verbatim into the output (CSS, images)
+deploy.py               build script and CLI (local preview / live deploy / build only)
+deploy/wrangler.jsonc   Cloudflare Workers config; deploy/public/ is build output (gitignored)
+docs/decisions/         ADRs, NNNN-title.md
 ```

@@ -1,0 +1,26 @@
+# Site content. Edit this file, then run `uv run build`.
+
+name = "Kit Chow"
+tagline = "Software developer based in Vancouver"
+intro = """
+Hi, I'm Kit. I build small tools and services in Python and on Cloudflare.
+This page collects a few demo projects I've worked on.
+"""
+
+[links]
+github = "https://github.com/kit971103"
+linkedin = "https://www.linkedin.com/in/your-handle"  # TODO: replace
+
+# One [[projects]] table per portfolio entry. `demo` and `source` are optional.
+[[projects]]
+title = "Demo Project One"
+description = "Short description of what it does and why it is interesting."
+tags = ["Python", "Cloudflare Workers"]
+demo = "https://example.com"
+source = "https://github.com/kit971103"
+
+[[projects]]
+title = "Demo Project Two"
+description = "Another project. Replace with your own."
+tags = ["Jinja2"]
+source = "https://github.com/kit971103"

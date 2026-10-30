@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated site and Wrangler state
+deploy/public/
+.wrangler/
+node_modules/
