@@ -1,0 +1,116 @@
+[project]
+name = "project-name"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "nbconvert[webpdf]>=7.17.1",
+    "ipykernel>=7.4.0", #jupyter kernel support
+    "mypy>=2.4.1",
+    "ty>=0.0.95",
+]
+notebook = [
+    "jupyterlab>=4.6.4",
+]
+
+[tool.ruff]
+# general and formatting settings
+exclude = ["**/deprecated_*/", "**/deprecated_*.py"]
+line-length = 80
+target-version = "py314"
+lint.isort.combine-as-imports = true
+lint.pydocstyle.convention = "google" # summary line, blank line, then body
+# linter settings
+# rules to enable
+lint.select = [
+    # general
+    "E",   # Pycodestyle errors (style issues)
+    "F",   # Pyflakes – logical errors
+    "W",   # Pycodestyle warnings (style issues)
+    "PL",  # Pylint – integrates Pylint checks
+    "RUF", # Ruff-specific rules – additional Ruff checks
+    # -------------------------------------------------------------------------------------------
+    # type annotation and syntax
+    "ANN", # Flake8-annotations – enforces type annotation style, very verbose
+    "RSE",    # Flake8-raise – proper raise statement usage
+    "TRY",    # Tryceratops – try/except usage suggestions
+    "RET501", # Flake8-return – unnecessary explicit `return None`
+    "RET502", # Flake8-return – bare `return` in function returning a value
+    "RET503", # Flake8-return – missing explicit return at end of function
+    "RET504", # Flake8-return – unnecessary assignment before return
+    # -------------------------------------------------------------------------------------------
+    # code quality and best practices
+    "B",      # Flake8-bugbear – common bug patterns
+    "S",      # Flake8-bandit – security issues
+    "C4",     # Flake8-comprehensions – best practices in comprehensions
+    "C90",    # McCabe – complexity metric for functions
+    "SIM",    # Flake8-simplify – code simplification hints
+    "FURB",   # Refurb – rules for code refurbishment
+    "COM818", # Flake8-commas – trailing comma on bare tuple
+    "YTT",    # Flake8-2020 – misuse of sys.version / sys.version_info
+    "ISC",    # Flake8-implicit-str-concat – warns on implicit string concatenation
+    "PIE",    # Flake8-pie – Python improvement suggestions
+    "SLF",    # Flake8-self – access to private members of other objects
+    "SLOT",   # Flake8-slots – __slots__ for str/tuple/namedtuple subclasses
+    # -------------------------------------------------------------------------------------------
+    # logging and debugging
+    "LOG",  # Flake8-logging – logging module misuse
+    "G010", # logging.warn (deprecated) instead of warning
+    "G101", # `extra` key clashes with LogRecord attribute
+    "G202", # redundant exc_info in logging.exception
+    "T10",  # Flake8-debugger – debugger statements (e.g. pdb)
+    # -------------------------------------------------------------------------------------------
+    # style, naming conventions, docs strings
+    "A",   # Flake8-builtins – misuse of Python built-in names
+    "D",   # Pydocstyle – docstring formatting
+    "N",   # PEP8 Naming – naming conventions
+    "I",   # isort – import ordering checks
+    "INP", # Flake8-no-pep420 – file in package without __init__.py
+    "ICN", # Flake8-import-conventions – enforces conventional import aliases
+    # -------------------------------------------------------------------------------------------
+    # others
+    "UP",     # Pyupgrade – upgrades syntax to newer Python versions
+    "TID251", # Flake8-tidy-imports – banned APIs
+    "TID253", # Flake8-tidy-imports – banned module-level imports
+    "PERF",   # Perflint – performance-related checks
+    # "FIX",  # Flake8-fixme – any TODO/FIXME/XXX/HACK comment
+    "ERA", # Eradicate – detects commented-out code (potentially dangerous)
+    "PGH", # Pygrep-hooks – blanket `type: ignore` / `noqa`, invalid mock calls
+    # -------------------------------------------------------------------------------------------
+    # library or framework specific
+    "PTH",   # Flake8-use-pathlib – encourages pathlib over os.path
+    "ASYNC", # Flake8-async – checks async/await usage
+    "PT", # Flake8-pytest-style – pytest best practices
+    "PD", # Pandas-vet – checks pandas-specific code practices
+    "NPY", # NumPy-specific rules – ensures NumPy coding standards
+]
+# rules to disable
+lint.ignore = [
+    "E501",   # line too long, handled by formatter
+    "E741",   # ambiguous variable name (l, O, I)
+    "N806",   # non-lowercase variable in function
+    "N817",   # CamelCase imported as acronym
+    "D1",     # Pydocstyle - missing docstring in public module, class, or function
+    "S101",   # allow use of assert statements
+    "C416",   # unnecessary comprehension, kept for readability
+    "C420",   # dict comprehension -> dict.fromkeys, kept for readability
+    "ANN002", # missing type annotation for *args
+    "ANN003", # missing type annotation for **kwargs
+    "ANN204", # missing return type for special methods
+    "PLC0415", # import not at top level
+    "PLR",    # Pylint Refactoring – detects code smells
+    "TRY003", # long messages outside exception class
+    "RUF012", # mutable class attributes need ClassVar
+    "RUF100", # unused noqa; autofix would strip noqa used by other tools
+]
+# per-file ignores, add entries as needed (inline table must stay on one line)
+# __init__.py: allow re-exports
+lint.per-file-ignores = { "__init__.py" = ["F401"] }
