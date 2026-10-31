@@ -2,6 +2,12 @@
 # Design rules for this copy: docs/0001-design-navy-technical-analyst.md
 
 name = "Kit Chow"
+full_name = "Kit (Yip-Chi) Chow"
+legal_name = "Yip-Chi Chow"
+page_title = "Kit Chow | Business Analyst in Vancouver"
+url = "https://kitchow.dev/"
+job_title = "Business Analyst"
+employer = "Maximizer"
 tagline = "Business analyst in Vancouver who turns business problems into working systems"
 role = "Business Analyst at Maximizer · Vancouver, BC"
 headline = "I turn business problems into working systems."
@@ -15,6 +21,7 @@ portrait_alt = "Portrait of Kit Chow in glasses, in front of a wall of hand-draw
 [links]
 github = "https://github.com/kit971103"
 linkedin = "https://www.linkedin.com/in/yip-chi-chow/"
+orcid = "https://orcid.org/0000-0001-8926-1546"
 
 # Proof strip under the hero.
 [[stats]]
