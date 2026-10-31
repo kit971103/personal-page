@@ -1,43 +1,136 @@
-# Site content. Edit this file, then run `uv run build`.
+# Site content. Edit this file, then run `uv run build.py`.
+# Design rules for this copy: docs/0001-design-navy-technical-analyst.md
 
 name = "Kit Chow"
-tagline = "Software developer based in Vancouver"
+tagline = "Business analyst in Vancouver who turns business problems into working systems"
+role = "Business Analyst at Maximizer · Vancouver, BC"
+headline = "I turn business problems into working systems."
 intro = """
-Hi, I'm Kit. I build small tools and services in Python and on Cloudflare.
-This page collects a few demo projects I've worked on.
+I use technical depth to understand how systems interact, then deliver the
+practical fix: from requirements through integration, data migration and
+production support.
 """
+portrait_alt = "Portrait of Kit Chow in glasses, in front of a wall of hand-drawn sketches"
 
 [links]
 github = "https://github.com/kit971103"
-linkedin = "https://www.linkedin.com/in/your-handle"  # TODO: replace
+linkedin = "https://www.linkedin.com/in/yip-chi-chow/"
 
-# One [[projects]] table per portfolio entry. `demo` and `source` are optional.
+# Proof strip under the hero.
+[[stats]]
+value = "~50K"
+label = "billing records migrated"
+
+[[stats]]
+value = "3 yrs"
+label = "of billing history reconciled"
+
+[[stats]]
+value = "3"
+label = "core systems integrated"
+
+[[stats]]
+value = "12"
+label = "finance users trained"
+
+[case_study]
+label = "Featured case study"
+title = "Replacing the billing system, end to end"
+summary = """
+I led the implementation of Maxio as Maximizer's billing system, connecting it
+to the CRM and ERP so that Finance could run on a single flow.
+"""
+caption = "Integrations built on REST and JSON-RPC APIs. Python and SQL pipelines carry CRM, billing and workflow data into live dashboards."
+legacy = "2 legacy systems, ~50K records"
+
+[[case_study.systems]]
+name = "Maximizer"
+role = "CRM"
+
+[[case_study.systems]]
+name = "Maxio"
+role = "Billing"
+hub = true
+
+[[case_study.systems]]
+name = "Sage Intacct"
+role = "ERP"
+
+[[case_study.steps]]
+name = "Discover"
+detail = "Gathered requirements from Finance."
+
+[[case_study.steps]]
+name = "Design"
+detail = "Shaped the solution and coordinated with the vendor."
+
+[[case_study.steps]]
+name = "Integrate"
+detail = "Built the links between billing, CRM and ERP."
+
+[[case_study.steps]]
+name = "Migrate"
+detail = "Cleaned and reconciled three years of history before load."
+
+[[case_study.steps]]
+name = "Support"
+detail = "Trained 12 finance users and resolve data and integration issues."
+
+[now]
+label = "Now building"
+text = "A dbt + DuckDB analytics warehouse with layered, tested models and documented lineage, replacing ad-hoc scripts."
+
+# One [[projects]] table per portfolio entry. `proves` is the skill the project
+# demonstrates. `demo`, `source`, `tags` and `featured` are optional.
 [[projects]]
 title = "Beancount Ledger Tools"
-description = "Tooling for a personal Beancount ledger: plugins, Fava extensions, Canadian statement extractors that check each parse against the document's own figures, and a read-only Fava deployment behind Cloudflare Access or Google IAP."
-tags = ["Python", "Beancount", "Fava", "Playwright", "Cloudflare Containers", "Google Cloud Run"]
+proves = "Data integrity and secure cloud delivery"
+description = "Tooling for my personal ledger: plugins, Fava extensions and Canadian statement extractors that prove each parse against the document's own figures. Runs as a read-only container on Cloud Run behind Identity-Aware Proxy and on Cloudflare Containers behind Access."
+tags = ["Python", "Fava", "Playwright", "Cloud Run", "Cloudflare Containers"]
 source = "https://github.com/kit971103/beancount-ledger-tools"
+featured = true
 
 [[projects]]
 title = "Poker Tracker"
-description = "Tracks home poker games: live game state, a dashboard, and game and player history. Pages are public; the admin area is protected by Cloudflare Access with email one-time PIN."
-tags = ["TypeScript", "Hono", "Cloudflare Workers", "Cloudflare D1", "Cloudflare Access"]
+proves = "Full-stack delivery with access control"
+description = "Live game state, a dashboard and player history on the edge. Public pages are open; the admin area sits behind Cloudflare Access."
+tags = ["TypeScript", "Hono", "Workers", "D1"]
 demo = "https://poker.kitchow.dev/"
 
 [[projects]]
 title = "Image Matching"
-description = "Reverse image search for fashion products without labeled data: transfer learning on pre-trained classifiers with orthogonalized target embeddings, reaching a 3.2% top-5 error rate."
-tags = ["Python", "PyTorch", "Computer Vision"]
+proves = "Applied machine learning"
+description = "Reverse image search for fashion products without labeled data, reaching a 3.2% top-5 error rate with orthogonalized embeddings."
+tags = ["Python", "PyTorch"]
 source = "https://github.com/kit971103/ImageMatching"
-
-[[projects]]
-title = "Conway's Game of Life"
-description = "A recreation of Conway's Game of Life with configurable rules, built for fun."
-tags = ["Python"]
-source = "https://github.com/kit971103/conways-game-of-life"
 
 # Draft: no matching repo or deployment yet. Add `source` / `demo` when it has one.
 # [[projects]]
 # title = "AI Job Application"
+# proves = ""
 # description = "Another project. Replace with your own."
 # tags = ["Cloudflare Workers", "Cloudflare D1", "Cloudflare Zero Trust"]
+
+[[skills]]
+group = "Business analysis"
+tools = ["Requirements gathering", "Solution design", "Vendor coordination", "User training"]
+
+[[skills]]
+group = "Integration"
+tools = ["REST APIs", "JSON-RPC", "Maxio", "Sage Intacct", "CRM systems"]
+
+[[skills]]
+group = "Data"
+tools = ["Python", "SQL", "dbt", "DuckDB", "Data migration", "Live dashboards"]
+
+[[skills]]
+group = "Cloud"
+tools = ["GCP Cloud Run", "Identity-Aware Proxy", "Cloudflare Workers", "Cloudflare Containers", "Cloudflare Access"]
+
+[[skills]]
+group = "AI and agents"
+tools = ["Model Context Protocol servers", "Connecting LLM agents to internal tools"]
+
+[contact]
+title = "Have a system that needs untangling?"
+text = "I'm happy to talk through integrations, data and analyst work."
