@@ -1,10 +1,39 @@
 {% extends "_base.html" %}
 
+{% block title %}{{ site.page_title }}{% endblock %}
+
+{% block meta %}
+<link rel="canonical" href="{{ site.url }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="{{ site.url }}">
+  <meta property="og:title" content="{{ site.page_title }}">
+  <meta property="og:description" content="{{ site.tagline }}">
+  <meta property="og:image" content="{{ site.url }}og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.name }}: {{ site.headline }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {{ site.name | tojson }},
+    "alternateName": {{ site.legal_name | tojson }},
+    "url": {{ site.url | tojson }},
+    "image": {{ (site.url ~ "portrait.jpg") | tojson }},
+    "jobTitle": {{ site.job_title | tojson }},
+    "worksFor": {"@type": "Organization", "name": {{ site.employer | tojson }}},
+    "address": {"@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA"},
+    "sameAs": {{ [site.links.linkedin, site.links.github, site.links.orcid] | tojson }}
+  }
+  </script>
+{% endblock %}
+
 {% block content %}
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">{{ site.name }}</p>
+      <p class="eyebrow">{{ site.full_name }}</p>
       <h1>{{ site.headline }}</h1>
       <p class="hero-intro">{{ site.intro | trim }}</p>
       <p class="hero-role">{{ site.role }}</p>

@@ -78,6 +78,16 @@ inverts.
 Its warm background contrasts with the navy, which helps it stand out in the
 hero. A sharper photo can replace the file at the same path and size.
 
+## Search and link previews
+
+Visitors arrive from the CV and LinkedIn, so the aim is name search and a good
+link preview, not keyword ranking. `templates/index.html` holds the canonical
+URL, Open Graph tags and Person structured data. The legal name Yip-Chi Chow is
+on the page so that search can tie the site to publications.
+
+`static/og-image.png` (1200x630) is a static copy of the hero. It does not
+update with the build, so regenerate it if the headline or portrait changes.
+
 ## Rejected options
 
 - Uniform project card list: gives the page no focal point and buries the
