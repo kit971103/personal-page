@@ -13,14 +13,31 @@ linkedin = "https://www.linkedin.com/in/your-handle"  # TODO: replace
 
 # One [[projects]] table per portfolio entry. `demo` and `source` are optional.
 [[projects]]
-title = "Demo Project One"
-description = "Short description of what it does and why it is interesting."
-tags = ["Python", "Cloudflare Workers"]
-demo = "https://example.com"
-source = "https://github.com/kit971103"
+title = "Beancount Ledger Tools"
+description = "Tooling for a personal Beancount ledger: plugins, Fava extensions, Canadian statement extractors that check each parse against the document's own figures, and a read-only Fava deployment behind Cloudflare Access or Google IAP."
+tags = ["Python", "Beancount", "Fava", "Playwright", "Cloudflare Containers", "Google Cloud Run"]
+source = "https://github.com/kit971103/beancount-ledger-tools"
 
 [[projects]]
-title = "Demo Project Two"
-description = "Another project. Replace with your own."
-tags = ["Jinja2"]
-source = "https://github.com/kit971103"
+title = "Poker Tracker"
+description = "Tracks home poker games: live game state, a dashboard, and game and player history. Pages are public; the admin area is protected by Cloudflare Access with email one-time PIN."
+tags = ["TypeScript", "Hono", "Cloudflare Workers", "Cloudflare D1", "Cloudflare Access"]
+demo = "https://poker.kitchow.dev/"
+
+[[projects]]
+title = "Image Matching"
+description = "Reverse image search for fashion products without labeled data: transfer learning on pre-trained classifiers with orthogonalized target embeddings, reaching a 3.2% top-5 error rate."
+tags = ["Python", "PyTorch", "Computer Vision"]
+source = "https://github.com/kit971103/ImageMatching"
+
+[[projects]]
+title = "Conway's Game of Life"
+description = "A recreation of Conway's Game of Life with configurable rules, built for fun."
+tags = ["Python"]
+source = "https://github.com/kit971103/conways-game-of-life"
+
+# Draft: no matching repo or deployment yet. Add `source` / `demo` when it has one.
+# [[projects]]
+# title = "AI Job Application"
+# description = "Another project. Replace with your own."
+# tags = ["Cloudflare Workers", "Cloudflare D1", "Cloudflare Zero Trust"]
