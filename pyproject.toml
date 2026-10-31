@@ -3,27 +3,23 @@ name = "personal-page"
 version = "0.1.0"
 description = "Static personal page built with Jinja2, deployed to Cloudflare Workers"
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = [
-    "jinja2>=3.1.6",
-]
+requires-python = ">=3.13"
+dependencies = ["jinja2>=3.1.6"]
 
 [dependency-groups]
 dev = [
     "nbconvert[webpdf]>=7.17.1",
-    "ipykernel>=7.4.0", #jupyter kernel support
+    "ipykernel>=7.4.0",          #jupyter kernel support
     "mypy>=2.4.1",
     "ty>=0.0.95",
 ]
-notebook = [
-    "jupyterlab>=4.6.4",
-]
+notebook = ["jupyterlab>=4.6.4"]
 
 [tool.ruff]
 # general and formatting settings
 exclude = ["**/deprecated_*/", "**/deprecated_*.py"]
 line-length = 80
-target-version = "py314"
+# target-version = "py313" # auto
 lint.isort.combine-as-imports = true
 lint.pydocstyle.convention = "google" # summary line, blank line, then body
 # linter settings
@@ -37,7 +33,7 @@ lint.select = [
     "RUF", # Ruff-specific rules – additional Ruff checks
     # -------------------------------------------------------------------------------------------
     # type annotation and syntax
-    "ANN", # Flake8-annotations – enforces type annotation style, very verbose
+    "ANN",    # Flake8-annotations – enforces type annotation style, very verbose
     "RSE",    # Flake8-raise – proper raise statement usage
     "TRY",    # Tryceratops – try/except usage suggestions
     "RET501", # Flake8-return – unnecessary explicit `return None`
@@ -86,28 +82,28 @@ lint.select = [
     # library or framework specific
     "PTH",   # Flake8-use-pathlib – encourages pathlib over os.path
     "ASYNC", # Flake8-async – checks async/await usage
-    "PT", # Flake8-pytest-style – pytest best practices
-    "PD", # Pandas-vet – checks pandas-specific code practices
-    "NPY", # NumPy-specific rules – ensures NumPy coding standards
+    "PT",    # Flake8-pytest-style – pytest best practices
+    "PD",    # Pandas-vet – checks pandas-specific code practices
+    "NPY",   # NumPy-specific rules – ensures NumPy coding standards
 ]
 # rules to disable
 lint.ignore = [
-    "E501",   # line too long, handled by formatter
-    "E741",   # ambiguous variable name (l, O, I)
-    "N806",   # non-lowercase variable in function
-    "N817",   # CamelCase imported as acronym
-    "D1",     # Pydocstyle - missing docstring in public module, class, or function
-    "S101",   # allow use of assert statements
-    "C416",   # unnecessary comprehension, kept for readability
-    "C420",   # dict comprehension -> dict.fromkeys, kept for readability
-    "ANN002", # missing type annotation for *args
-    "ANN003", # missing type annotation for **kwargs
-    "ANN204", # missing return type for special methods
+    "E501",    # line too long, handled by formatter
+    "E741",    # ambiguous variable name (l, O, I)
+    "N806",    # non-lowercase variable in function
+    "N817",    # CamelCase imported as acronym
+    "D1",      # Pydocstyle - missing docstring in public module, class, or function
+    "S101",    # allow use of assert statements
+    "C416",    # unnecessary comprehension, kept for readability
+    "C420",    # dict comprehension -> dict.fromkeys, kept for readability
+    "ANN002",  # missing type annotation for *args
+    "ANN003",  # missing type annotation for **kwargs
+    "ANN204",  # missing return type for special methods
     "PLC0415", # import not at top level
-    "PLR",    # Pylint Refactoring – detects code smells
-    "TRY003", # long messages outside exception class
-    "RUF012", # mutable class attributes need ClassVar
-    "RUF100", # unused noqa; autofix would strip noqa used by other tools
+    "PLR",     # Pylint Refactoring – detects code smells
+    "TRY003",  # long messages outside exception class
+    "RUF012",  # mutable class attributes need ClassVar
+    "RUF100",  # unused noqa; autofix would strip noqa used by other tools
 ]
 # per-file ignores, add entries as needed (inline table must stay on one line)
 # __init__.py: allow re-exports
