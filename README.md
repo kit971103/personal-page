@@ -1,13 +1,15 @@
 # personal-page
 
-Static personal page: intro, GitHub/LinkedIn links and a portfolio section.
-Rendered with Jinja2 and served as a static-assets-only Cloudflare Worker.
+Static personal page positioning Kit as a technical analyst: hero, proof
+stats, a featured case study, side projects and skills. Rendered with Jinja2
+and served as a static-assets-only Cloudflare Worker.
 
 ## Edit content
 
 All text, links and projects live in `content/site.toml`. Add a portfolio
-entry by appending another `[[projects]]` table (`demo`, `source` and `tags`
-are optional).
+entry by appending another `[[projects]]` table (`proves` is required; `demo`,
+`source`, `tags` and `featured` are optional). Before changing copy or styling,
+read `docs/0001-design-navy-technical-analyst.md`.
 
 ## Commands
 
@@ -15,16 +17,12 @@ Requires [uv](https://docs.astral.sh/uv/) and Node.js (for `npx wrangler`).
 
 ```sh
 uv sync                              # install dependencies (first time)
-uv run deploy.py                     # build, then preview at http://localhost:8787 (same as --local)
-uv run deploy.py --build-only        # build into deploy/public/ only
-uv run deploy.py --live              # build, then deploy to Cloudflare
+uv run build.py                      # build into deploy/public/
+cd deploy && npx wrangler dev        # preview at http://localhost:8787
+cd deploy && npx wrangler deploy     # deploy to Cloudflare
 ```
 
-Every mode rebuilds `deploy/public/` first. Unrecognised arguments are passed
-through to Wrangler, e.g. `uv run deploy.py --live --dry-run` or
-`uv run deploy.py --port 8000`.
-
-Before the first `--live` deploy, log in once: `cd deploy && npx wrangler login`.
+Before the first deploy, log in once: `cd deploy && npx wrangler login`.
 
 ## Layout
 
@@ -32,7 +30,8 @@ Before the first `--live` deploy, log in once: `cd deploy && npx wrangler login`
 content/site.toml       page content (edit this)
 templates/              Jinja2 templates; files starting with "_" are layouts, not pages
 static/                 copied verbatim into the output (CSS, images)
-deploy.py               build script and CLI (local preview / live deploy / build only)
+build.py                build script
 deploy/wrangler.jsonc   Cloudflare Workers config; deploy/public/ is build output (gitignored)
+docs/                   design records, 0001-design-title.md
 docs/decisions/         ADRs, NNNN-title.md
 ```
