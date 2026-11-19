@@ -17,6 +17,9 @@
 
   --on-navy: #ffffff;
   --on-navy-muted: #c6d3e8;
+
+  /* Lets the browser theme scrollbars and the initial canvas to match. */
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,13 +37,11 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font: 17px/1.6 "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font: 1.0625rem/1.6 "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -49,7 +50,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 :focus-visible { outline: 3px solid var(--blue-500); outline-offset: 3px; border-radius: 4px; }
 
-h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.12; }
+h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.12; text-wrap: balance; }
+p, li { text-wrap: pretty; }
 h2 { margin: 0 0 16px; font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem); }
 h3 { margin: 0 0 8px; font-size: 1.25rem; }
 
@@ -307,7 +309,8 @@ h3 { margin: 0 0 8px; font-size: 1.25rem; }
 
 footer { padding: 24px; background: var(--navy-950); color: var(--on-navy-muted); font-size: 0.875rem; text-align: center; }
 
-@media (max-width: 900px) {
+/* Breakpoints in em so the layout reflows when visitors enlarge text. */
+@media (max-width: 56.25em) {
   .hero { padding: 64px 0 128px; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .portrait { order: -1; width: 128px; border-radius: 50%; }
@@ -318,8 +321,8 @@ footer { padding: 24px; background: var(--navy-950); color: var(--on-navy-muted)
   .steps li:last-child { grid-column: 1 / -1; }
 }
 
-@media (max-width: 640px) {
-  body { font-size: 16px; }
+@media (max-width: 40em) {
+  body { font-size: 1rem; }
   .wrap { padding: 0 16px; }
   .section { padding-top: 64px; }
   .stat { padding: 20px 16px; }
@@ -334,8 +337,13 @@ footer { padding: 24px; background: var(--navy-950); color: var(--on-navy-muted)
   .contact { margin-top: 64px; padding: 56px 0; }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Reduced motion drops the movement only; colour and shadow feedback stay. */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .button, .project { transition: none; }
+  .button { transition: background-color 150ms ease; }
+  .project { transition: box-shadow 150ms ease; }
   .button:hover, .project:hover { transform: none; }
 }
