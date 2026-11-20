@@ -11,11 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
       - run: uv sync --no-dev --locked
       - run: uv run --no-dev build.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: site
           path: ./deploy/public/
@@ -25,30 +25,30 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref_name == 'main'
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           name: site
-          path: ./deploy/public/
+          path: deploy/public/
       - uses: cloudflare/wrangler-action@v4
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy --config deploy/wrangler.toml --message "${{ github.ref_name }}@${{ github.sha }}"
+          command: deploy --config deploy/wrangler.jsonc --message "${{ github.ref_name }}@${{ github.sha }}"
   
   preview-deploy:
     needs: build
     runs-on: ubuntu-latest
     if: startsWith(github.ref_name, 'preview-')
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           name: site
-          path: dist/
+          path: deploy/public/
       - uses: cloudflare/wrangler-action@v4
         with:
           environment: preview
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy --config deploy/wrangler.toml --message "${{ github.ref_name }}@${{ github.sha }}"
+          command: deploy --config deploy/wrangler.jsonc --message "${{ github.ref_name }}@${{ github.sha }}"
